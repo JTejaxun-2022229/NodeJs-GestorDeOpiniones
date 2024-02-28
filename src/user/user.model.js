@@ -19,12 +19,12 @@ const UserSchema = mongoose.Schema({
     img: {
         type: String
     },
+    publication:{
+        type: Array
+    },
     status: {
         type: Boolean,
         default: true
-    },
-    publication:{
-        type: Array
     },
     google: {
         type: Boolean,
