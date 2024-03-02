@@ -1,6 +1,6 @@
 import User from '../user/user.model.js';
 
-export const existenteEmail = async (email = '') => {
+export const existEmail = async (email = '') => {
     const emailExist = await User.findOne({ email });
 
     if (emailExist) {
@@ -8,7 +8,7 @@ export const existenteEmail = async (email = '') => {
     }
 }
 
-export const existeUserById = async (id = '') => {
+export const existUserById = async (id = '') => {
     const userExist = await User.findById(id);
 
     if (!userExist) {
