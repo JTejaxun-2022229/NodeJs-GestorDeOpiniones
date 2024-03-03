@@ -1,32 +1,36 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const PublicationSchema = mongoose.Schema({
 
-    user:{
-        type:String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        require: true
     },
-    title:{
-        type:String,
+    title: {
+        type: String,
         required: [true, "Title is necessary"]
     },
-    category:{
+    category: {
         type: String,
         required: [true, "Category is necessary"]
     },
-    body:{
+    body: {
         type: String,
         required: [true, "Body is necessary"]
     },
-    img:{
+    img: {
         type: String
     },
-    comment:{
+    comment: {
         type: Array
     },
-    status:{
+    status: {
         type: Boolean,
         default: true
-    }
+    },
+}, {
+    versionKey: false
 });
 
 export default mongoose.model('Publication', PublicationSchema)
