@@ -1,4 +1,6 @@
 import User from '../user/user.model.js';
+import Publication from '../publication/publication.model.js'
+import Comment from '../comment/comment.model.js'
 
 export const existEmail = async (email = '') => {
     const emailExist = await User.findOne({ email });
@@ -11,7 +13,17 @@ export const existEmail = async (email = '') => {
 export const existUserById = async (id = '') => {
     const userExist = await User.findById(id);
 
-    if (!userExist) {
-        throw new Error(`ID: ${id} do not exist`);
-    }
+    if (!userExist) { throw new Error(`User with id: ${id} does not exist`); }
+}
+
+export const existPublicationById = async (id = '') => {
+    const publicationExist = await Publication.findById(id);
+
+    if (!publicationExist) { throw new Error(`Publicatioin with id: ${id} does not exist`) }
+}
+
+export const existCommentById = async (id = '') => {
+    const commentExist = await Comment.findById(id);
+
+    if (!commentExist) { throw new Error(`Comment with id: ${id} does not exist`); }
 }

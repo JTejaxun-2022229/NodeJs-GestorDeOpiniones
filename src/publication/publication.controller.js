@@ -1,9 +1,29 @@
 'use strict';
 
+import { response, request } from "express";
 import User from '../user/user.model.js';
 import Publication from './publication.model.js';
 
 export const postPublication = async (req, res) => {
+
+    const { data } = req.body;
+
+    const user = await User.findOne({ user: data.user });
+
+    if (!user) return res.status(404).send({ message: 'User not found' });
+
+    const publication = new Publication({ ...data, user: user._id });
+
+    await publication.save();
+
+    res.status(200).json({
+
+        publication
+    });
+};
+
+/*export const postPublication = async (req, res) => {
+
     const data = req.body;
 
     const user = await User.findOne({ email: data.email });
@@ -84,4 +104,4 @@ export const deletePublication = async (req, res) => {
     await Publication.findByIdAndUpdate(id, { status: false });
 
     res.status(200).json({ msg: 'Publication deleted succesful' });
-}
+}*/

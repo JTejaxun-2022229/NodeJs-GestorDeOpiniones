@@ -13,9 +13,6 @@ const CommentSchema = mongoose.Schema({
     img:{
         type: String
     },
-    comment:{
-        type: Array
-    },
     status:{
         type: Boolean,
         default: true

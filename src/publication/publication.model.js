@@ -29,8 +29,7 @@ const PublicationSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
-}, {
-    versionKey: false
+
 });
 
-export default mongoose.model('Publication', PublicationSchema)
+export default mongoose.model('Publication', PublicationSchema);
