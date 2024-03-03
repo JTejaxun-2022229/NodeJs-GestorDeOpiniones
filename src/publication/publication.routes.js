@@ -25,7 +25,8 @@ router.get(
     ], getPublicationById
 );
 
-router.delete('/:id', [validationJWT, validationFields], deletePublication);
+router.delete('/:id', [validationJWT, validationFields], deletePublication
+);
 
 
 export default router;

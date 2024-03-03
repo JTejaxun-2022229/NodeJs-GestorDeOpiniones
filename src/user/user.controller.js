@@ -41,20 +41,22 @@ export const getUserById = async (req, res) => {
 }
 
 export const userPut = async (req, res = response) => {
+
     const { id } = req.params;
-    const { _id, password, google, email, ...remain } = req.body;
+    const { _id, password, google, email, ...rest } = req.body;
 
-    const salt = bcryptjs.genSaltSync();
-    user.password = bcryptjs.hashSync(password, salt);
+    if (password) {
+        const salt = bcryptjs.genSaltSync();
+        rest.password = bcryptjs.hashSync(password, salt);
+    }
 
-    await User.findByIdAndUpdate(id, remain);
+    await User.findByIdAndUpdate(id, rest);
 
     const user = await User.findOne({ _id: id });
 
     res.status(200).json({
-
-
-        msg: 'User was update',
-        user
+        msg: 'User was successfully',
+        user,
     });
 }
+

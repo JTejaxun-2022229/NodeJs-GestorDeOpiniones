@@ -32,6 +32,7 @@ router.post(
 router.put(
     "/:id",
     [
+        validationJWT,
         check("id", "ID is invalid").isMongoId(),
         check("id").custom(existUserById),
         validationFields
